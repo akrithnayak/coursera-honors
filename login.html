@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- build:css css/main-lg.css -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles_login.css">
+    <!-- endbuild -->
+    <title>Login</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6 d-none d-md-block" id="left-image">
+                <div style="margin-top: 30%;" class="text-center">
+                    <h1 class="display-3 font-weight-normal">CENTRAL<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIBRARY</h1>
+                </div>
+                <div style="margin-top: 20%;"><img src="./img/minedu_jornada_logo.png" alt="minedu, working day logo" class="img-fluid"></div>   
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="d-flex flex-column">
+                    <div class="mt-0 mt-md-3 px-3 py-2 text-center" id="main-title"><h1>LOGIN</h1></div>
+                    <div class="text-center mt-2"><img src="./img/colegio_logo.png" alt="School logo" class="img-fluid" id="school-logo"></div>
+                    <div class="p-3 py-5 mt-2 pale-color">
+                        <div class="form-group row">
+                            <label for="email" class="col-12 col-md-2 offset-md-1 text-md-right">Email:</label>
+                            <div class="col-md-8">
+                                <input type="email" id="email" class="form-control" value="johndoe@gmail.com">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pass" class="col-12 col-md-2 offset-md-1 text-md-right">Password:</label>
+                            <div class="col-md-8">
+                                <input type="password" id="pass" class="form-control" value="example">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="offset-md-3 col-md-8">
+                                <a href="./books.html" class="btn btn-primary d-block d-md-inline">LOGIN</a>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="offset-md-3 col-md-8">
+                                <a href="#"><span class="fas fa-question-circle"></span> Do you forgot your password?</a>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="offset-md-3 col-md-8">
+                                <a href="#"><span class="fas fa-question-circle"></span> Don't have an account yet?</a>
+                            </div>
+                        </div>
+                    <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- build:css css/main-id.css -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
+    <title>Events</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">IVP Library Web</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnav" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainnav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./index.html"><span class="alert">Home</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./books.html"><span class="alert">Books</span></a></li>
+                <li class="nav-item active-custom"><a class="nav-link" href="#"><span class="alert alert-primary">Events</span><span class="sr-only ">(current)</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="#"><span class="alert">About</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./login.html"><span class="alert">Log In</span></a></li>
+            </ul>
+            <span class="mx-2"></span>
+            <img id="minedu-logo" src="./img/minedu_jornada_logo.png" alt="MINEDU and FULL WORKING DAY logo"  class="img-fluid navbar-text">
+            <div class="navbar-text">
+                <span class="fas fa-user fa-lg mr-1" alt="Your user name"></span>ADMIN: John Doe
+                <span class="fas fa-sign-out-alt fa-2x ml-4" alt="Log out"></span>
+            </div>
+        </div>
+    </nav>
+    <!--Starting MODALS section-->
+    <div class="modal fade" id="see-more-modal" tabindex="-1" role="dialog" aria-labelledby="SeeMoreModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">EVENT DETAILS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close Modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center">
+                            <img class="img-fluid see-img" id="see-img" alt="Book image">
+                        </div>
+                        <div class="col-12 col-md mt-3 mt-md-0">
+                            <div class="form-group">
+                                <label for="see-name">Name:</label>
+                                <input type="text" class="form-control" id="see-name" readonly="readonly" value="hii!">
+                            </div>
+                            <div class="form-group">
+                                <label for="see-organizer">Organizer:</label>
+                                <input type="text" class="form-control" id="see-organizer" readonly="readonly" value="hii!">
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-4">
+                                    <label for="see-start-date">Start Date:</label>
+                                    <input type="text" class="form-control" id="see-start-date" readonly="readonly" value="hii!">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="see-ending-date">Ending Date:</label>
+                                    <input type="text" class="form-control" id="see-ending-date" readonly="readonly" value="hii!">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="see-score">Users Score:</label>
+                                    <div>
+                                        <h3>
+                                            <span class="fas fa-star"></span>
+                                            <span class="badge badge-warning ml-3" id="see-score"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label for="see-place">Place:</label>
+                                <input type="text" class="form-control" id="see-place" readonly="readonly" value="hii!">
+                            </div>
+                            <div class="form-group">
+                                <label for="see-description">Description:</label>
+                                <textarea readonly id="see-description" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary">Return</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="DeleteEventModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button data-dismiss="modal" aria-label="Close Deleting Modal" class="close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="row px-3">
+                    <div class="col-12 col-md-3 pb-2 pb-m-0" style="color: red;"><span class="fas fa-exclamation-triangle fa-5x"></span></div>
+                    <div class="col-11 col-md">
+                        <p>Are you sure to delete the event called: <strong><span id="delete-name"></span></strong></p><br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning" id="deleting">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">EVENT EDITING</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close Modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center">
+                            <img class="img-fluid see-img" id="edit-img" alt="Event image">
+                        </div>
+                        <div class="col-12 col-md mt-3 mt-md-0">
+                            <div class="form-group">
+                                <label for="edit-name">Name:</label>
+                                <input type="text" class="form-control" id="edit-name"value="hii!">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-organizer">Organizer:</label>
+                                <input type="text" class="form-control" id="edit-organizer" value="hii!">
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-4">
+                                    <label for="edit-start-date">Start Date:</label>
+                                    <input type="text" class="form-control" id="edit-start-date" value="hii!">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-ending-date">Ending Date:</label>
+                                    <input type="text" class="form-control" id="edit-ending-date" value="hii!">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-score">Users Score:</label>
+                                    <div>
+                                        <h3>
+                                            <span class="fas fa-star"></span>
+                                            <span class="badge badge-warning ml-3" id="edit-score"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label for="edit-place">Place:</label>
+                                <input type="text" class="form-control" id="edit-place" value="hii!">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-description">Description:</label>
+                                <textarea id="edit-description" cols="30" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Return</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="make-edit">Edit Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End MODALS section-->
+    <!--Starting Content-->
+    <div class="container-fluid">
+        <div class="p-1 primary-color">
+            <div class="rounded-circle light-color text-center d-none d-lg-block" id="container-badge">
+                <img src="./img/colegio_logo.png" class="img-fssluid " id="colegio-logo">
+            </div>
+            <div class="rounded-pill light-color text-center mt-1" id="page-title">
+                <h1>LIST OF EVENTS<h1>
+            </div>
+        </div>
+        <div id="breadcrumb-custom">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Events</li>
+                </ol>
+            </nav>
+        </div>
+        <!--Beginning: Search section-->
+        <div class="d-flex flex-row page-section-row">
+            <div class="dark-color rounded">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="ml-4 flex-grow-1">
+                <div class="row rounded page-section">
+                    <div class="col-12">
+                        <form class="row align-items-center">
+                            <div class="col-12 col-md-3">
+                                <div class="form-check">
+                                    <input type="radio" name="filter-book" value="filt-name" id="filt-name" class="form-check-input" checked>
+                                    <label for="filt-name" class="form-check-label">Search by event's name</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="filter-book" value="filt-date" id="filt-date" class="form-check-input">
+                                    <label for="filt-date" class="form-check-label">Search by date</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-7">
+                                <div class="form-group row mt-3">
+                                    <div class="col-12 col-md-2 mt-2"><label for="data-search">Insert Data:</label></div>
+                                    <div class="col-12 col-md">
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text fas fa-search"></span>
+                                            </div>
+                                            <input type="text" id="data-search" class="form-control" aria-label="insert data to search" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md my-2 my-md-0">
+                                <button type="submit" class="btn btn-primary">SEARCH!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <!--End: Search Section-->
+        <!--Beginning: Results Section-->
+        <div class="d-flex flex-row page-section-row">
+            <div class="dark-color rounded">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="ml-4 flex-grow-1">
+                <div class="row rounded page-section">
+                    <div class="col-12">
+                        <div class="d-flex py-2">
+                            <h4>RESULTS:</h4>
+                            <button class="btn btn-primary ml-auto" type="button">NEW BOOK</button>
+                        </div>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a href="#all-panel" class="nav-link active" id="all-tab" data-toggle="tab" role="tab" aria-controls="all-events" aria-selected="true">SEE ALL EVENTS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sooner-panel" class="nav-link" id="sooner-tab" data-toggle="tab" role="tab" aria-controls="sooner-events" aria-selected="false">SEE ONLY EVENTS THAT WILL COME</a>
+                            </li>
+                        </ul>
+                        <!--Beginning: Events Catalog-->
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="all-panel" role="tabpanel" arialabelledby="all-tab">
+                                <div class="row division"> 
+                                    <div class="col-2 align-self-center">
+                                        <img src="./img/contest.jpg" alt="contest" class="img-thumbnail books-img">
+                                    </div>
+                                    <div class="col-10 col-md-7">
+                                        <h3 id="e1-name">
+                                            <strong>Reading Contest for a Laptop!</strong><span class="badge badge-success mx-3">NEW!</span>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Organizer:</strong></p>
+                                                    <p class="col col-md" id="e1-organizer">Central Library</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Start Date:</strong></p>
+                                                    <p class="col-8 col-md-3" id="e1-startdate">15/03/2020</p>
+                                                    <p class="col-4 col-md-3"><strong>Ending Date:</strong></p>
+                                                    <p class="col-8 col-md-4" id="e1-endingdate">01/12/2020</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Place:</strong></p>
+                                                    <p class="col col-md" id="e1-place">Central Library</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star-half-alt fa-2x ml-2" aria-label="one half star"></span>
+                                            <span class="far fa-star fa-2x ml-2"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                        <div class="d-flex flex-row pt-5 align-items-center">
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="e1"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="e1"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                                <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="e1"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                                <div class="row"> 
+                                    <div class="col-2 align-self-center">
+                                        <img src="./img/reading-club.jpg" alt="reading-club" class="img-thumbnail books-img ">
+                                    </div>
+                                    <div class="col-10 col-md-7">
+                                        <h3 id="e2-name">
+                                            <strong>Reading Club's 14th Meeting</strong>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Organizer:</strong></p>
+                                                    <p class="col col-md" id="e2-organizer">Central Library</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Start Date:</strong></p>
+                                                    <p class="col-8 col-md-3" id="e2-startdate">01/03/2020</p>
+                                                    <p class="col-4 col-md-3"><strong>Ending Date:</strong></p>
+                                                    <p class="col-8 col-md-4" id="e2-endingdate">01/03/2020</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Place:</strong></p>
+                                                    <p class="col col-md" id="e2-place">Central Library</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star-half-alt fa-2x ml-2" aria-label="one half star"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                        <div class="d-flex flex-row pt-5 align-items-center">
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="e2"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="e2"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                                <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="e2"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <hr>
+                                <div class="row"> 
+                                    <div class="col-2 align-self-center">
+                                        <img src="./img/films.jpg" alt="lordoftheringsbook" class="img-thumbnail books-img ">
+                                    </div>
+                                    <div class="col-10 col-md-7">
+                                        <h3 id="e3-title">
+                                            <strong>Cinema Day!</strong>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Organizer:</strong></p>
+                                                    <p class="col col-md" id="e3-organizer">Central Library</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Start Date:</strong></p>
+                                                    <p class="col-8 col-md-3" id="e3-startdate">04/03/2020</p>
+                                                    <p class="col-4 col-md-3"><strong>Ending Date:</strong></p>
+                                                    <p class="col-8 col-md-4" id="e3-endingdate">04/03/2020</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Place:</strong></p>
+                                                    <p class="col col-md" id="e3-place">Central Library</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                        <div class="d-flex flex-row pt-5 align-items-center">
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="e3"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="e3"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                                <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="e3"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                                <div class="row division">
+                                    <div class="col-12 col-md-3 offset-md-5 align-self-center text-center mt-md-0 mt-4">
+                                        <span class="fas fa-reply-all fa-lg mx-2 text-pale-color"></span>
+                                        <span class="fas fa-reply fa-lg mx-2 text-pale-color"></span>
+                                        <span class="fas fa-reply fa-flip-horizontal fa-lg mx-2"></span>
+                                        <span class="fas fa-reply-all fa-flip-horizontal fa-lg mx-2"></span>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p class="font-weight-light text-right pt-3">Showing <strong>3</strong> of <strong>16</strong> events</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="sooner-panel" role="tabpanel" arialabelledby="sooner-tab">
+                                <div class="row division"> 
+                                    <div class="col-2 align-self-center">
+                                        <img src="./img/contest.jpg" alt="phpbook" class="img-thumbnail books-img">
+                                    </div>
+                                    <div class="col-10 col-md-7">
+                                        <h3 id="e1-cl-name">
+                                            <strong>Reading Contest for a Laptop!</strong><span class="badge badge-success mx-3">NEW!</span>
+                                        </h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Organizer:</strong></p>
+                                                    <p class="col col-md" id="e1-cl-organizer">Central Library</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Start Date:</strong></p>
+                                                    <p class="col-8 col-md-3" id="e1-cl-startdate">15/03/2020</p>
+                                                    <p class="col-4 col-md-3"><strong>Ending Date:</strong></p>
+                                                    <p class="col-8 col-md-4" id="e1-cl-endingdate">01/12/2020</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <p class="col-4 col-md-2"><strong>Place:</strong></p>
+                                                    <p class="col col-md" id="e1-cl-place">Central Library</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                            <span class="fas fa-star-half-alt fa-2x ml-2" aria-label="one half star"></span>
+                                            <span class="far fa-star fa-2x ml-2"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                        <div class="d-flex flex-row pt-5 align-items-center">
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="e1"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="e1"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                                <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="e1"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><hr>
+                                <div class="row division">
+                                    <div class="col-12 col-md-3 offset-md-5 align-self-center text-center mt-md-0 mt-4">
+                                        <span class="fas fa-reply-all fa-lg mx-2 text-pale-color"></span>
+                                        <span class="fas fa-reply fa-lg mx-2 text-pale-color"></span>
+                                        <span class="fas fa-reply fa-flip-horizontal fa-lg mx-2"></span>
+                                        <span class="fas fa-reply-all fa-flip-horizontal fa-lg mx-2"></span>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <p class="font-weight-light text-right pt-3">Showing <strong>1</strong> of <strong>1</strong> upcoming events</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End: Books Catalog-->
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <!--End: Results Section-->
+        <footer class="dark-color">
+            <div class="row page-section-row ">
+                <div class="col-6 col-md-4 mt-2">
+                    <h5>CONTENT:</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./index.html" class="link-unstyled">- Home</a></li>
+                        <li><a href="./login.html" class="link-unstyled">- Log In</a></li>
+                        <li><a href="./books.html" class="link-unstyled">- Books Section</a></li>
+                        <li>- Events Section</li>
+                        <li><a href="#" class="link-unstyled">- About us</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 text-center align-self-center">
+                    <h5>© Copyright IVP Library - 2020</h5>
+                </div>
+                <div class="col-12 col-md-4 text-center align-self-center mb-2 mb-md-0">
+                    <span class="fab fa-facebook-square m-3 fa-3x media-buttons"></span>
+                    <span class="fab fa-youtube m-3 fa-3x media-buttons" alt="Youtube"></span>
+                    <span class="fab fa-twitter m-3 fa-3x media-buttons"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+   <!-- build:js js/main-ev.js -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/events.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

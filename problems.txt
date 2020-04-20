@@ -1,0 +1,9 @@
+advertencias de problemas de pluggins -> migrar a gulp v4
+logo de ivp --> position: absolute & transform: translate
+linea decorativa a la izquierda de cada seccion de la pagina --> usar herramienta bootstrap d-flex, flex-row y flex-grow-1
+imagenes en div se desajustan en pantallas 1024 x 1366 -> !! se debe usar media queries
+
+Comportamiento molesto: Se abre modal "reservaciones" justo al pulsar "deshacer reservaciones" --> se require conocimientos mas profundos en asincronismo de js
+
+
+d-flex no muy versatil en el manejo responsivo al desarrollar los datos basicos para los eventos (ejemplo: partir un parrafo en 2 para mejor visualizacion en dispositivos moviles) ---> usar el confiable sistema de grillas

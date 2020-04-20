@@ -1,0 +1,3 @@
+Limitantes:
+- Integracion con BD como MySQL o MongoDB
+- Integracion con lenguaje backend como PHP o JS(Node.js)

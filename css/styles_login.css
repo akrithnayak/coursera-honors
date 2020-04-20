@@ -1,0 +1,21 @@
+body {
+  padding: 0px;
+  z-index: 0;
+  background-color: #F2F2F2; }
+
+#left-image {
+  background-image: url("../img/login.jpg");
+  background-size: cover; }
+
+#main-title {
+  color: honeydew;
+  background-color: #4FC2F7; }
+
+#school-logo {
+  height: 155px; }
+
+.primary-color {
+  background-color: #4FC2F7; }
+
+.pale-color {
+  background-color: #D0E8F3; }

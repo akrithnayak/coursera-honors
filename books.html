@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- build:css css/main-id.css -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- endbuild -->
+    <title>Books</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">IVP Library Web</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainnav" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle Navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainnav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./index.html"><span class="alert">Home</span></a></li>
+                <li class="nav-item active-custom"><a class="nav-link" href="#"><span class="alert alert-primary">Books</span><span class="sr-only ">(current)</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./events.html"><span class="alert">Events</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="#"><span class="alert">About</span></a></li>
+                <li class="nav-item nav-alert-custom"><a class="nav-link" href="./login.html"><span class="alert">Log In</span></a></li>
+            </ul>
+            <span class="mx-2"></span>
+            <img id="minedu-logo" src="./img/minedu_jornada_logo.png" alt="MINEDU and FULL WORKING DAY logo"  class="img-fluid navbar-text">
+            <div class="navbar-text">
+                <span class="fas fa-user fa-lg mr-1" alt="Your user name"></span>ADMIN: John Doe
+                <span class="fas fa-sign-out-alt fa-2x ml-4" alt="Log out"></span>
+            </div>
+        </div>
+    </nav>
+    <!--Starting MODALS section-->
+    <div class="modal fade" id="see-more-modal" tabindex="-1" role="dialog" aria-labelledby="SeeMoreModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">BOOK DETAILS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close Modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center">
+                            <img class="img-fluid see-img" id="see-img" alt="Book image">
+                        </div>
+                        <div class="col-12 col-md mt-3 mt-md-0">
+                            <div class="form-group">
+                                <label for="see-title">Title:</label>
+                                <input type="text" class="form-control" id="see-title" readonly="readonly" value="BOOK'S NAME">
+                            </div>
+                            <div class="form-group">
+                                <label for="see-author">Author:</label>
+                                <input type="text" class="form-control" id="see-author" readonly="readonly" value="hii!">
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-6">
+                                    <label for="see-editorial">Editorial:</label>
+                                    <input type="text" class="form-control" id="see-editorial" readonly="readonly" value="hii!">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="see-edition">Edition:</label>
+                                    <input type="text" class="form-control" id="see-edition" readonly="readonly" value="hii!">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="see-year">Publication Year:</label>
+                                    <input type="text" class="form-control" id="see-year" readonly="readonly" value="hii!">
+                                </div>
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-6">
+                                    <label for="see-copies">Available Copies:</label>
+                                    <input type="text" class="form-control" id="see-copies" readonly="readonly" value="hii!">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="see-isbn">ISBN:</label>
+                                    <input type="text" class="form-control" id="see-isbn" readonly="readonly" value="hii!">
+                                </div>
+                            </div>    
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="see-keywords">Keywords:</label>
+                                    <div id="see-keywords"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="see-score">Users Score:</label>
+                                    <div>
+                                        <h3>
+                                            <span class="fas fa-star"></span>
+                                            <span class="badge badge-warning ml-3" id="see-score"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Return</button>
+                    <button type="button" data-dismiss="modal" data-toggle="modal" data-target="#reserve-modal" class="btn btn-primary">Reserve a Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="reserve-modal" tabindex="-1" role="dialog" aria-labelledby="ReserveCopyModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" data-dismiss="modal" aria-label="Close Reservation Modal" class="close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to reserve a copy of: <strong><span id="reserve-tile"></span></strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="make-reservation">Reserve a Copy!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="DeleteBookModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation</h5>
+                    <button data-dismiss="modal" aria-label="Close Deleting Modal" class="close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="row px-3">
+                    <div class="col-12 col-md-3 pb-2 pb-m-0" style="color: red;"><span class="fas fa-exclamation-triangle fa-5x"></span></div>
+                    <div class="col-11 col-md">
+                        <p>Are you sure to delete the book called: <strong><span id="delete-title"></span></strong></p><br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-warning" id="deleting">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">BOOK EDITING</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close Modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center">
+                            <img class="img-fluid see-img" id="edit-img" alt="Book image">
+                        </div>
+                        <div class="col-12 col-md mt-3 mt-md-0">
+                            <div class="form-group">
+                                <label for="edit-title">Title:</label>
+                                <input type="text" class="form-control" id="edit-title" value="BOOK'S NAME">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-author">Author:</label>
+                                <input type="text" class="form-control" id="edit-author" value="hii!">
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-6">
+                                    <label for="edit-editorial">Editorial:</label>
+                                    <input type="text" class="form-control" id="edit-editorial" value="hii!">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="edit-edition">Edition:</label>
+                                    <input type="text" class="form-control" id="edit-edition" value="hii!">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="edit-year">Publication Year:</label>
+                                    <input type="text" class="form-control" id="edit-year" value="hii!">
+                                </div>
+                            </div>
+                            <div class="form-row">    
+                                <div class="form-group col-md-6">
+                                    <label for="edit-copies">Available Copies:</label>
+                                    <input type="text" class="form-control" id="edit-copies" value="hii!">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edit-isbn">ISBN:</label>
+                                    <input type="text" class="form-control" id="edit-isbn" value="hii!">
+                                </div>
+                            </div>    
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="edit-keywords">Keywords:</label>
+                                    <div id="edit-keywords"></div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="edit-score">Users Score:</label>
+                                    <div>
+                                        <h3>
+                                            <span class="fas fa-star"></span>
+                                            <span class="badge badge-warning ml-3" id="edit-score"></span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-secondary">Return</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="make-edit">Edit Book</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End MODALS section-->
+    <!--Starting Content-->
+    <div class="container-fluid">
+        <div class="p-1 primary-color">
+            <div class="rounded-circle light-color text-center d-none d-lg-block" id="container-badge">
+                <img src="./img/colegio_logo.png" class="img-fssluid " id="colegio-logo">
+            </div>
+            <div class="rounded-pill light-color text-center mt-1" id="page-title">
+                <h1>LIST OF AVAILABLE BOOKS</h1>
+            </div>
+        </div>
+        <div id="breadcrumb-custom">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Books</li>
+                </ol>
+            </nav>
+        </div>
+        <!--Beginning: Search section-->
+        <div class="d-flex flex-row page-section-row">
+            <div class="dark-color rounded">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="ml-4 flex-grow-1">
+                <div class="row rounded page-section">
+                    <div class="col-12">
+                        <form class="row align-items-center">
+                            <div class="col-12 col-md-3">
+                                <div class="form-check">
+                                    <input type="radio" name="filter-book" value="filt-title" id="filt-title" class="form-check-input" checked>
+                                    <label for="filt-title" class="form-check-label">Search by title</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="filter-book" value="filt-author" id="filt-author" class="form-check-input">
+                                    <label for="filt-author" class="form-check-label">Search by author</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="filter-book" value="filt-year" id="filt-year" class="form-check-input">
+                                    <label for="filt-year" class="form-check-label">Search by year of publication</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-7">
+                                <div class="form-group row mt-3">
+                                    <div class="col-12 col-md-2 mt-2"><label for="data-search">Insert Data:</label></div>
+                                    <div class="col-12 col-md">
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text fas fa-search"></span>
+                                            </div>
+                                            <input type="text" id="data-search" class="form-control" aria-label="insert data to search" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md my-2 my-md-0">
+                                <button type="submit" class="btn btn-primary">SEARCH!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <!--End: Search Section-->
+        <!--Beginning: Results Section-->
+        <div class="d-flex flex-row page-section-row">
+            <div class="dark-color rounded">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="ml-4 flex-grow-1">
+                <div class="row rounded page-section">
+                    <div class="col-12">
+                        <div class="d-flex py-2">
+                            <h4>RESULTS:</h4>
+                            <button class="btn btn-primary ml-auto" type="button">NEW BOOK</button>
+                        </div>
+                        <!--Beginning: Books Catalog-->
+                        <div class="row division"> 
+                            <div class="col-2 align-self-center">
+                                <img src="./img/phpbook.jpg" alt="phpbook" class="img-thumbnail books-img">
+                            </div>
+                            <div class="col-10 col-md-7">
+                                <h3 id="b1-title">
+                                    <strong>PHP for Absolute Beginners</strong><span class="badge badge-success mx-3">NEW!</span>
+                                </h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Author:</strong></p>
+                                            <p class="col col-md" id="b1-author">Jason Lengstorf</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Edition:</strong></p>
+                                            <p class="col col-md" id="b1-edition">1st</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Available copies:</strong></p>
+                                            <p class="col col-md" id="b1-copies">6</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star-half-alt fa-2x ml-2" aria-label="one half star"></span>
+                                    <span class="far fa-star fa-2x ml-2"></span>
+                                    <!--<span class="fas fa-jedi fa-2x ml-2"></span>
+                                    <span class="fas fa-journal-whills fa-2x ml-2"></span>
+                                    <span class="fab fa-jedi-order fa-2x ml-2"></span>
+                                    <span class="fab fa-galactic-senate fa-2x ml-2"></span>-->
+                                </div>
+                            </div>
+                            <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                <div class="d-flex flex-row pt-5 align-items-center">
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="b1"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 reserve-button" data-toggle="modal" data-target="#reserve-modal" idb="b1"><span class="fas fa-book-open"></span> RESERVE COPY</button>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="b1"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="b1"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <hr>
+                        <div class="row"> 
+                            <div class="col-2 align-self-center">
+                                <img src="./img/physicsbook.jpg" alt="physicsbook" class="img-thumbnail books-img ">
+                            </div>
+                            <div class="col-10 col-md-7">
+                                <h3 id="b2-title">
+                                    <strong>Principles of Physics</strong>
+                                </h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Author:</strong></p>
+                                            <p class="col col-md" id="b2-author">Resnick, Halliday and Jearl Walker</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Edition:</strong></p>
+                                            <p class="col col-md" id="b2-edition">9th</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Available copies:</strong></p>
+                                            <p class="col col-md" id="b2-copies">8</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star-half-alt fa-2x ml-2" aria-label="one half star"></span>
+                                </div>
+                            </div>
+                            <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                <div class="d-flex flex-row pt-5 align-items-center">
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="b2"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 reserve-button" data-toggle="modal" data-target="#reserve-modal" idb="b2"><span class="fas fa-book-open"></span> RESERVE COPY</button>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="b2"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="b2"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <hr>
+                        <div class="row"> 
+                            <div class="col-2 align-self-center">
+                                <img src="./img/lordoftheringsbook.jpg" alt="lordoftheringsbook" class="img-thumbnail books-img ">
+                            </div>
+                            <div class="col-10 col-md-7">
+                                <h3 id="b3-title">
+                                    <strong>The Lord of the Rings</strong>
+                                </h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Author:</strong></p>
+                                            <p class="col col-md" id="b3-author">J.R.R. Tolkien</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Edition:</strong></p>
+                                            <p class="col col-md" id="b3-edition">One-volume edition</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <p class="col-4 col-md-2"><strong>Available copies:</strong></p>
+                                            <p class="col col-md" id="b3-copies">13</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="fas fa-star fa-2x" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                    <span class="fas fa-star fa-2x ml-2" aria-label="one star"></span>
+                                </div>
+                            </div>
+                            <div class="col-10 offset-2 col-md-3 offset-md-0">
+                                <div class="d-flex flex-row pt-5 align-items-center">
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 see-button" data-toggle="modal" data-target="#see-more-modal" idb="b3"><span class="fas fa-glasses"></span> SEE MORE</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 reserve-button" data-toggle="modal" data-target="#reserve-modal" idb="b3"><span class="fas fa-book-open"></span> RESERVE COPY</button>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <button type="button" class="btn btn-primary btn-sm m-2 edit-button" data-toggle="modal" data-target="#edit-modal" idb="b3"><span class="fas fa-pencil-alt"></span> EDIT</button>
+                                        <button type="button" class="btn btn-primary btn-sm m-2 mt-4 delete-button" data-toggle="modal" data-target="#delete-modal" idb="b3"><span class="fas fa-trash-alt"></span> DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><hr>
+                        <div class="row division">
+                            <div class="col-12 col-md-3 offset-md-5 align-self-center text-center mt-md-0 mt-4">
+                                <span class="fas fa-reply-all fa-lg mx-2 text-pale-color"></span>
+                                <span class="fas fa-reply fa-lg mx-2 text-pale-color"></span>
+                                <span class="fas fa-reply fa-flip-horizontal fa-lg mx-2"></span>
+                                <span class="fas fa-reply-all fa-flip-horizontal fa-lg mx-2"></span>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <p class="font-weight-light text-right pt-3">Showing <strong>3</strong> of <strong>52,250</strong> books</p>
+                            </div>
+                        </div>
+                        <!--End: Books Catalog-->
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <!--End: Results Section-->
+        <footer class="dark-color">
+            <div class="row page-section-row ">
+                <div class="col-6 col-md-4 mt-2">
+                    <h5>CONTENT:</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./index.html" class="link-unstyled">- Home</a></li>
+                        <li><a href="./login.html" class="link-unstyled">- Log In</a></li>
+                        <li>- Books Section<li>
+                        <li><a href="./events.html" class="link-unstyled">- Events Section</a></li>
+                        <li><a href="#" class="link-unstyled">- About us</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 text-center align-self-center">
+                    <h5>© Copyright IVP Library - 2020</h5>
+                </div>
+                <div class="col-12 col-md-4 text-center align-self-center mb-2 mb-md-0">
+                    <span class="fab fa-facebook-square m-3 fa-3x media-buttons"></span>
+                    <span class="fab fa-youtube m-3 fa-3x media-buttons" alt="Youtube"></span>
+                    <span class="fab fa-twitter m-3 fa-3x media-buttons"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- build:js js/main-bo.js -->
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/books.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
